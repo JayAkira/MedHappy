@@ -10,9 +10,9 @@
 				</div> -->
 				<v-img class="mx-auto my-6" src="../assets/logo.png" max-width="200"> </v-img>
 				<div class="d-flex">
-					<v-icon>mdi-format-quote-open</v-icon>
-					<div class="text-h5 my-6">Stay healthy, stay happy</div>
-					<v-icon>mdi-format-quote-close</v-icon>
+					<!-- <v-icon>mdi-format-quote-open</v-icon> -->
+					<div class="text-h5 mx-auto my-6">Stay healthy, stay happy</div>
+					<!-- <v-icon>mdi-format-quote-close</v-icon> -->
 				</div>
 			</v-col>
 		</v-row>
