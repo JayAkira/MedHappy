@@ -1,18 +1,28 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+	<v-row dense>
+		<v-col>
+			<div class="text-h4">Reminder</div>
+			<div class="text-h5">{{ getCurrentDate() }}</div>
+		</v-col>
+		<v-col v-for="(item, i) in $store.items" :key="i" cols="12">
+			<Card :data="item" />
+		</v-col>
+	</v-row>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import Card from "../components/Card.vue";
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+	components: { Card },
+
+	methods: {
+		getCurrentDate() {
+			return new Date().toLocaleString("en-us", {
+				weekday: "long",
+				month: "short",
+				day: "numeric",
+			});
+		},
+	},
+};
 </script>
