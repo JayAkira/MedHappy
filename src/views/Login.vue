@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import {authActions} from '../store/auth'
+
 export default {
 	name: "App",
 	data: () => ({
@@ -61,7 +63,7 @@ export default {
 	methods: {
 		submitHandler() {
 			if (this.$refs.form.validate()) {
-				console.log('passed')
+				authActions.login()
 				// this.loading = true;
 				// setTimeout(() => {
 				// 	this.loading = false;

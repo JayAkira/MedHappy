@@ -2,11 +2,9 @@
 	<v-card>
 		<v-row>
 			<v-col>
-				<!-- Change name to variable that comes from saved fullname at time of register -->
-				<div class="text-h5" >Name</div>
-				<v-form v-model="valid" :disabled="isEditable === false">
-					<!-- <v-text-field v-model="name" label="Name"></v-text-field> -->
-					<v-text-field v-model="email" label="Age"></v-text-field>
+				<div class="text-h5">{{ name }}</div>
+				<v-form :disabled="isEditable === false">
+					<v-text-field v-model="age" label="Age"></v-text-field>
 					<v-text-field v-model="dob" label="Date of Birth"></v-text-field>
 					<v-text-field
 						v-model="insurance_company"
@@ -32,7 +30,7 @@
 		<v-row>
 			<v-col>
 				<v-btn block color="primary" @click="logout">
-					<v-icon left dark>mdi-logout</v-icon>
+					<v-icon left >mdi-logout</v-icon>
 					log out
 				</v-btn>
 			</v-col>
@@ -41,23 +39,41 @@
 </template>
 
 <script>
+import { getters, actions } from "../store/user";
+// import {authActions} from '../store/auth'
+
 export default {
+	computed: { ...getters },
 	data: () => ({
 		isEditable: false,
-		name: "",
-		age: "",
-		dob: "",
-		insurance_company: "",
-		isurance_id: "",
-		bin: "",
-		pcn: "",
+		name: getters.profile().name,
+		age: getters.profile().age,
+		dob: getters.profile().dob,
+		insurance_company: getters.profile().insurance_company,
+		insurance_id: getters.profile().insurance_id,
+		bin: getters.profile().bin,
+		pcn: getters.profile().pcn,
 	}),
 	methods: {
 		toggleIsEditable() {
 			this.isEditable = !this.isEditable;
+			if (this.isEditable == false) this.updateProfile();
+		},
+		updateProfile() {
+			const data = {
+				name: this.name,
+				age: this.age,
+				dob: this.dob,
+				insurance_company: this.insurance_company,
+				insurance_id: this.insurance_id,
+				bin: this.bin,
+				pcn: this.pcn,
+			};
+			actions.updateProfile(data);
 		},
 		logout() {
 			// handle logout logic
+			// authActions.logout();
 			this.$router.replace("/");
 		},
 	},

@@ -1,4 +1,5 @@
 <template>
+
 	<v-bottom-navigation
 		v-if="$route.name != 'Login' && $route.name != 'Register' && $route.name != 'Landing'"
 		v-model="value"
