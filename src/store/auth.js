@@ -1,11 +1,6 @@
 import Vue from "vue";
+// import { mutations } from "./user";
 import router from "../router";
-
-const baseLoginURL =
- 	"https://la2xxfmc7f.execute-api.us-west-1.amazonaws.com/default/login_verification/";
-
- const baseRegisterURL =
- 	"https://a02jhri2r8.execute-api.us-west-1.amazonaws.com/default/add_user/";
 
 const initialState = {
 	isAuthenticated: false,
@@ -22,25 +17,16 @@ export const authMutations = {
 };
 
 export const authActions = {
-	async login(email, password) {
-		await fetch(
-			baseLoginURL + "?user_email=" + email + "&password=" + password,
-			{  mode: "no-cors" }
-		)
-			.then((res) => console.log(res.json()))
-			.catch((err) => console.log(err));
-		// authMutations.setIsAuthenticated(true);
-        // router.replace("/home");
+	login() {
+		// let medicineList = api call from db getting medicine list (should be array)
+		// mutations.setMedicineList(medicineList);
+		// let profileInfo = api call from db getting user profile info (should be object)
+		// mutations.setProfileInfo(profileInfo);
+		authMutations.setIsAuthenticated(true);
+        router.replace("/home");
 	},
-	async register(name, email, password) {
-		await fetch(
-			baseRegisterURL + "user_name=" + name + "&password=" + password,
-			"&user_email=" + email, { mode: "no-cors" }
-		)
-			.then((res) => console.log(res.json()))
-			.catch((err) => console.log(err));	
-
-        // router.replace("/home");
+	register() {
+        router.replace("/home");
 	},
 	logout() {
 		router.replace("/");
