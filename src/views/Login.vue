@@ -63,7 +63,7 @@ export default {
 	methods: {
 		submitHandler() {
 			if (this.$refs.form.validate()) {
-				authActions.login()
+				authActions.login(this.email, this.password)
 				// this.loading = true;
 				// setTimeout(() => {
 				// 	this.loading = false;

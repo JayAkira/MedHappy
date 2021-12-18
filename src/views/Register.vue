@@ -49,9 +49,11 @@
 </template>
 
 <script>
+import {authActions} from '../store/auth';
 export default {
 	data() {
 		return {
+			name: "",
 			show1: false,
 			passwordShow: false,
 			email: "",
@@ -70,7 +72,8 @@ export default {
 	methods: {
 		submitHandler() {
 			if (this.$refs.form.validate()) {
-				console.log("passed");
+				// console.log("passed");
+				authActions.register(this.name, this.email, this.password)
 				// this.loading = true;
 				// setTimeout(() => {
 				// 	this.loading = false;
